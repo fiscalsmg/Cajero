@@ -2,18 +2,25 @@ var imagenes = [];
 imagenes["50"] = "billete50.png";
 imagenes["20"] = "billete20.png";
 imagenes["10"] = "moneda10.png";
-
+var addimagenes = [];
 class Billete {
     constructor(v, c) {
         this.valor = v;
         this.cantidad = c;
         this.imagenen = new Image();
         this.imagenen.src = imagenes[this.valor];
-        // console.log(imagenes[this.valor]);
     }
     muestraIMG() {
-        document.body.appendChild(this.imagenen);
+
+        var muestra;;
+        console.log(this.valor + "--" + this.cantidad + "--" + imagenes[this.valor]);
+        for (var i = 0; i < this.cantidad; i++) {
+            muestra = document.body.appendChild(this.imagenen);
+            console.log(muestra)
+            document.body.appendChild(muestra);
+        }
     }
+    addIMG() {}
 }
 
 function entregarDinero() {
@@ -41,12 +48,12 @@ function entregarDinero() {
         resultado.innerHTML = "no puedo darte esa cantidad";
     } else {
         //console.log(entregado);
+        var daDinero;
         for (var e of entregado) {
             if (e.cantidad > 0) {
                 resultado.innerHTML = resultado.innerHTML + e.cantidad + " Billetes de $ " + e.valor + "<br/>";
                 e.muestraIMG();
             }
-
         }
     }
 }
@@ -57,6 +64,10 @@ var entregado = []; //coleccion de billetes que entrego al usuario, variable que
 caja.push(new Billete(50, 2)); //agrega nuevos objetos al array
 caja.push(new Billete(20, 3));
 caja.push(new Billete(10, 3));
+
+for (var x in caja[0]) {
+    console.log("--" + x);
+}
 
 
 var dinero = 0;
