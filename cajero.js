@@ -2,7 +2,6 @@ var imagenes = [];
 imagenes["50"] = "billete50.png";
 imagenes["20"] = "billete20.png";
 imagenes["10"] = "moneda10.png";
-var addimagenes = [];
 class Billete {
     constructor(v, c) {
         this.valor = v;
@@ -12,15 +11,19 @@ class Billete {
     }
     muestraIMG() {
 
-        var muestra;;
+        var muestra = this.imagenen;
         console.log(this.valor + "--" + this.cantidad + "--" + imagenes[this.valor]);
         for (var i = 0; i < this.cantidad; i++) {
-            muestra = document.body.appendChild(this.imagenen);
-            console.log(muestra)
-            document.body.appendChild(muestra);
+            console.log(muestra);
+            document.body.appendChild(this.imagenen);
+            //   document.body.appendChild(this.valor.value);
         }
+
     }
-    addIMG() {}
+    addIMG(ima) {
+        ima = this.imagenen;
+        document.body.appendChild(ima);
+    }
 }
 
 function entregarDinero() {
@@ -52,7 +55,14 @@ function entregarDinero() {
         for (var e of entregado) {
             if (e.cantidad > 0) {
                 resultado.innerHTML = resultado.innerHTML + e.cantidad + " Billetes de $ " + e.valor + "<br/>";
-                e.muestraIMG();
+                resultadoIMG.innerHTML = resultadoIMG.innerHTML + e.valor + "<br/>";
+
+                for (var i = 0; i < e.cantidad; i++) {
+                    ///resultadoIMG.appendChild(e.imagenen);
+                    resultadoIMG.innerHTML = resultadoIMG.innerHTML + e.valor + "<br/>";
+                    console.log(e.imagenen);
+                }
+
             }
         }
     }
@@ -77,3 +87,4 @@ var papeles = 0;
 var b = document.getElementById("extraer"); //obtiene un elemento del html
 b.addEventListener("click", entregarDinero);
 var resultado = document.getElementById("resultado");
+var resultadoIMG = document.getElementById("addimg");
