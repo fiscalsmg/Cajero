@@ -43,7 +43,7 @@ function entregarDinero() {
 
                 for (var i = 0; i < e.cantidad; i++) {
                     ///resultadoIMG.appendChild(e.imagenen);
-                    resultadoIMG.innerHTML = resultadoIMG.innerHTML + e.valor + "<br/>";
+                    resultadoIMG.innerHTML = resultadoIMG.innerHTML + "<hr><br/> <strong> Billete de " + e.valor + "</strong><br/>";
                     resultadoIMG.appendChild(e.imagenen);
                     console.log(e.imagenen);
                 }
