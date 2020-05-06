@@ -16,7 +16,9 @@ function entregarDinero() {
     /**Nota .value es caja de texto devuelve texto 
      * debemos parsear el numero 
      */
+
     dinero = parseInt(t.value);
+    console.log(dinero);
     for (var bi of caja) { //toma todos los elementes de la caja y los itera y los coloca en bi
         // console.log(bi);
         if (dinero > 0) {
@@ -30,7 +32,6 @@ function entregarDinero() {
             }
             entregado.push(new Billete(bi.valor, papeles));
             dinero = dinero - (bi.valor * papeles);
-            tol = dinero - (bi.valor * papeles);
         }
     }
     if (dinero > 0) {
@@ -56,13 +57,18 @@ function entregarDinero() {
 }
 
 function muestraEC() {
-
+    dinero = parseInt(t.value);
+    var retiro = 0;
     for (var bi of caja) {
         var valor = bi.cantidad * bi.valor;
         tol += valor;
-        console.log(valor);
 
     }
+    if (dinero > 0) {
+        retiro = tol - dinero;
+        tol = retiro;
+    }
+    console.log(tol);
     toldinero.innerHTML = "Dinero actual " + tol;
 
 }
@@ -79,7 +85,7 @@ caja.push(new Billete(10, 3));
 var dinero = 0;
 var dif = 0; //variable iteradora
 var papeles = 0;
-var tol = 0;
+var tol = 0; //variable para suumar y restar la cantidad del cajero
 
 var b = document.getElementById("extraer"); //obtiene un elemento del html
 b.addEventListener("click", entregarDinero);
