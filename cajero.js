@@ -9,6 +9,9 @@ class Billete {
         this.imagenen = new Image();
         this.imagenen.src = imagenes[this.valor];
     }
+    prueba() {
+
+    }
 }
 
 function entregarDinero() {
@@ -20,6 +23,7 @@ function entregarDinero() {
     for (var bi of caja) { //toma todos los elementes de la caja y los itera y los coloca en bi
         // console.log(bi);
         if (dinero > 0) {
+
             div = Math.floor(dinero / bi.valor); //funcion floor redondea haca abajo decimales
             //console.log(div);
             if (div > bi.cantidad) {
@@ -29,6 +33,8 @@ function entregarDinero() {
             }
             entregado.push(new Billete(bi.valor, papeles));
             dinero = dinero - (bi.valor * papeles);
+
+            console.log(bi.valor * bi.cantidad);
         }
     }
     if (dinero > 0) {
@@ -36,9 +42,9 @@ function entregarDinero() {
         resultado.innerHTML = "no puedo darte esa cantidad";
     } else {
         //console.log(entregado);
-        var daDinero;
         for (var e of entregado) {
             if (e.cantidad > 0) {
+                console.log(e.cantidad);
                 resultado.innerHTML = resultado.innerHTML + e.cantidad + " Billetes de $ " + e.valor + "<br/>";
 
                 for (var i = 0; i < e.cantidad; i++) {
@@ -53,6 +59,16 @@ function entregarDinero() {
     }
 }
 
+function muestraEC() {
+    for (var bi of caja) {
+        var valor = bi.cantidad * bi.valor;
+        tol += valor;
+        console.log(valor);
+
+    }
+    toldinero.innerHTML = "Dinero actual " + tol;
+}
+
 var caja = []; //caja de billetes del cajeroATM
 var entregado = []; //coleccion de billetes que entrego al usuario, variable que se modifica
 
@@ -60,16 +76,16 @@ caja.push(new Billete(50, 2)); //agrega nuevos objetos al array
 caja.push(new Billete(20, 3));
 caja.push(new Billete(10, 3));
 
-for (var x in caja[0]) {
-    console.log("--" + x);
-}
-
 
 var dinero = 0;
 var dif = 0; //variable iteradora
 var papeles = 0;
+var tol = 0;
 
 var b = document.getElementById("extraer"); //obtiene un elemento del html
 b.addEventListener("click", entregarDinero);
 var resultado = document.getElementById("resultado");
+var toldinero = document.getElementById("dineroCajero");
 var resultadoIMG = document.getElementById("addimg");
+var dineroCajero = document.getElementById("muestraDinero");
+dineroCajero.addEventListener("click", muestraEC);
