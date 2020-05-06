@@ -9,13 +9,10 @@ class Billete {
         this.imagenen = new Image();
         this.imagenen.src = imagenes[this.valor];
     }
-    prueba() {
 
-    }
 }
 
 function entregarDinero() {
-    var t = document.getElementById("dinero"); //recibe el valor de la caja de texto
     /**Nota .value es caja de texto devuelve texto 
      * debemos parsear el numero 
      */
@@ -23,7 +20,7 @@ function entregarDinero() {
     for (var bi of caja) { //toma todos los elementes de la caja y los itera y los coloca en bi
         // console.log(bi);
         if (dinero > 0) {
-
+            toldinero.innerHTML = "";
             div = Math.floor(dinero / bi.valor); //funcion floor redondea haca abajo decimales
             //console.log(div);
             if (div > bi.cantidad) {
@@ -33,8 +30,7 @@ function entregarDinero() {
             }
             entregado.push(new Billete(bi.valor, papeles));
             dinero = dinero - (bi.valor * papeles);
-
-            console.log(bi.valor * bi.cantidad);
+            tol = dinero - (bi.valor * papeles);
         }
     }
     if (dinero > 0) {
@@ -44,14 +40,14 @@ function entregarDinero() {
         //console.log(entregado);
         for (var e of entregado) {
             if (e.cantidad > 0) {
-                console.log(e.cantidad);
+                //console.log(e.cantidad);
                 resultado.innerHTML = resultado.innerHTML + e.cantidad + " Billetes de $ " + e.valor + "<br/>";
 
                 for (var i = 0; i < e.cantidad; i++) {
                     ///resultadoIMG.appendChild(e.imagenen);
                     resultadoIMG.innerHTML = resultadoIMG.innerHTML + "<hr><br/> <strong> Billete de " + e.valor + "</strong><br/>";
                     resultadoIMG.appendChild(e.imagenen);
-                    console.log(e.imagenen);
+                    //  console.log(e.imagenen);
                 }
 
             }
@@ -60,6 +56,7 @@ function entregarDinero() {
 }
 
 function muestraEC() {
+
     for (var bi of caja) {
         var valor = bi.cantidad * bi.valor;
         tol += valor;
@@ -67,7 +64,9 @@ function muestraEC() {
 
     }
     toldinero.innerHTML = "Dinero actual " + tol;
+
 }
+
 
 var caja = []; //caja de billetes del cajeroATM
 var entregado = []; //coleccion de billetes que entrego al usuario, variable que se modifica
@@ -89,3 +88,4 @@ var toldinero = document.getElementById("dineroCajero");
 var resultadoIMG = document.getElementById("addimg");
 var dineroCajero = document.getElementById("muestraDinero");
 dineroCajero.addEventListener("click", muestraEC);
+var t = document.getElementById("dinero"); //recibe el valor de la caja de texto
